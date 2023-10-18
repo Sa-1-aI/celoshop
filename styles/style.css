@@ -1,0 +1,550 @@
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 1068px;
+  }
+}
+@media (min-width: 640px) {
+  .container {
+    max-width: 940px;
+  }
+}
+.container {
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* body {
+  line-height: inherit;
+  margin: 0;
+}
+
+::after,
+::before {
+  --tw-content: "";
+} */
+
+*,
+::after,
+::before {
+  border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid {
+  display: grid;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+/* Next Div : .card */
+
+.card,
+.card .thumbnail {
+  overflow: hidden;
+  position: relative;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(61, 56, 56, 0.322) !important;
+  height: 100%;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+
+/* html {
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: normal;
+  font-family: Recursive, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
+  font-variation-settings: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+} */
+
+/* Thumbnail */
+
+.card .thumbnail {
+  height: 400px;
+  width: 100%;
+}
+
+.thumbnail img {
+  display: block;
+  overflow-clip-margin: content-box;
+  overflow: clip;
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+/* Details */
+
+.card .details {
+  background-color: #fff;
+  border-top: 4px solid #000;
+  color: #000;
+  height: 100%;
+  padding: 15px 10px;
+  position: relative;
+  z-index: 0; /* 10 */
+  min-height: 10.5em;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: #fff;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.leading-9 {
+  line-height: 2.25rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: #000;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.w-9 {
+  width: 2.25rem;
+}
+
+.h-9 {
+  height: 2.25rem;
+}
+
+.right-3 {
+  right: 0.75rem;
+}
+
+.-top-5 {
+  top: -1.25rem;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-raleway {
+  font-family: Raleway, sans-serif;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+a {
+  transition: all 0.3s ease;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* MT 3 */
+
+.mt-3 {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+/* flex item center */
+
+.absol {
+  position: absolute;
+  bottom: 2%;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border: 1px solid #708090;
+  border-radius: 5px;
+  padding: 5px 20px 5px 20px;
+  background-color: #708090;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.text-sm:hover {
+  background-color: #fc644d;
+  color: #fc644d;
+  border-color: #fc644d;
+  transition: all 0.2s ease-in-out;
+  /* letter-spacing: 1px; */
+  color: black;
+}
+
+.font-raleway {
+  font-family: Raleway, sans-serif;
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-left: 0.5rem;
+  margin-left: calc(0.5rem * (1 - var(--tw-space-x-reverse)));
+  margin-right: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.svg {
+  display: block;
+  vertical-align: middle;
+}
+
+/* svg:not(:root) {
+  overflow-clip-margin: content-box;
+  overflow: hidden; 
+}
+
+:not(svg) {
+  transform-origin: 0px 0px;
+} 
+*/
+
+/* Box */
+
+.box {
+  position: fixed;
+  /* top: 50%; */
+  /* left: 50%; */
+  inset: 50%;
+  left: 25%;
+  margin: auto;
+  background-color: white;
+  z-index: 1001;
+  /* transition: all 1.5s ease-in-out; */
+  /* margin-right: -50%; */
+  /* transform: translate(-50%, -50%); */
+  width: 50%;
+  height: 80%;
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.2);
+}
+
+.blur {
+  filter: blur(5px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Box thumbnail */
+
+.box-thumbnail {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+}
+
+.box img {
+  width: 100%;
+  height: 100%;
+  overflow-clip-margin: content-box;
+  object-fit: cover;
+}
+
+.box-details {
+  position: absolute;
+  display: grid;
+  width: 60%;
+  height: 100%;
+  left: 40%;
+  justify-content: center;
+  /* align-items: center; */
+  vertical-align: middle;
+  flex-wrap: wrap;
+  /* padding: 20px 0; */
+  background-color: #fff;
+}
+
+.user-picture {
+  /* padding: 50px; */
+  position: relative;
+  /* left: 25%;
+    right: 30%; */
+  margin-top: 20px;
+  justify-content: center;
+  justify-self: center;
+  right: 3%;
+}
+
+.identicon {
+  scale: 1.5;
+}
+
+.title {
+  padding: 0 0;
+  font-size: 25px;
+  justify-self: center;
+  text-align: center;
+  font-family: "Fira Code Light";
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.description {
+  justify-self: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 22.5px;
+  font-family: "Fira Code Light";
+  font-weight: bold;
+}
+
+.supply {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: "Fira Code Light";
+  user-select: none;
+  margin-bottom: 50px;
+}
+
+.sold,
+.total {
+  /* padding: 5px 10px; */
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  padding: 10px 10px;
+}
+
+.available {
+  margin-left: 20px;
+}
+
+.arrow {
+  margin: 1em;
+  color: #000;
+  display: inline-flex;
+  width: 5em;
+  height: 3em;
+  border: 1px #000 solid;
+  border-radius: 3em;
+  align-items: center;
+  /* flex-direction: column; */
+  justify-content: center;
+  transition: 0.3s;
+}
+
+/* remove extra arrow from inputs */
+
+.wanted::-webkit-inner-spin-button,
+.wanted::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.wanted {
+  font-size: 1em;
+  text-align: center;
+  background: none;
+  border: none;
+  color: black;
+  font-weight: bold;
+  width: 100%;
+}
+
+.wanted:focus {
+  outline: none;
+}
+
+.up-arrow,
+.down-arrow {
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* .down-arrow{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    transform: rotateX(180deg);
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid black;
+  } */
+
+/* .down-arrow:hover {
+    background-color: darkcyan;
+    transition: all 0.2s ease-in-out;
+  } */
+
+/* .up-arrow{
+    margin: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid black;
+  } */
+
+/* .up-arrow:hover {
+    background-color: darkcyan;
+    transition: all 0.2s ease-in-out;
+  } */
+
+.buy {
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  min-height: 10vh;
+  width: 100%;
+  bottom: 0;
+  font-family: "Fira Code Light";
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.buy:hover {
+  background-color: #000;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.close {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  padding: 10px;
+  background-color: #fc644d;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.user-product-picture {
+  margin-left: 5px;
+}
+
+.user-product-picture .identicon {
+  scale: 1;
+}
+
+.celo-usd {
+  width: 25px;
+  height: 25px;
+}
+
+/* Metamask Wallet */
+
+.wallet {
+  position: absolute;
+  display: flex;
+  right: 0;
+  align-self: center;
+}
+
+.user-selection {
+  user-select: none;
+}
+
+.mid-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.purchaseButton {
+  z-index: 0;
+  position: relative;
+  top: -3.5rem;
+  margin-left: 20px;
+}
