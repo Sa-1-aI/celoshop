@@ -17,7 +17,6 @@ import { useContractCall } from "@/hooks/contract/useContractRead";
 import { useContractSend } from "@/hooks/contract/useContractWrite";
 // import reac-tooltip library to show a tooltip when hovering over specific points
 import { Tooltip, Zoom } from "@mui/material";
-// import functions for using state management"
 
 
 // Define the interface for the product, an interface is a type that describes the properties of an object
