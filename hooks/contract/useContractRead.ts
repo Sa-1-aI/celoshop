@@ -2,16 +2,15 @@
 
 // Import the wagmi hook to read from a smart contract
 import { useContractRead } from 'wagmi';
-// Import the Marketplace ABI(Interface)
-import MarketplaceInstance from "../../abi/Marketplace.json";
+// Import the Shop ABI(Interface)
 import ShopInstance from "../../abi/Shop.json";
 
 // read from smart contract
 export const useContractCall = (functionName: string, args?: Array<any>, watch?: boolean, from? : `0x${string}` | undefined) => {
     const resp = useContractRead({
-        // The address of the smart contract, in this case the Marketplace from the JSON file
+        // The address of the smart contract, in this case the Shop from the JSON file
         address: ShopInstance.address as `0x${string}`,
-        // The ABI of the smart contract, in this case the Marketplace from the JSON file
+        // The ABI of the smart contract, in this case the Shop from the JSON file
         abi: ShopInstance.abi,
         // The smart contract function name to call
         functionName: functionName,

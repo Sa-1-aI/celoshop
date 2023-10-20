@@ -2,8 +2,7 @@
 
 // Import the wagmi hooks to prepare and write to a smart contract
 import { useContractWrite, usePrepareContractWrite } from 'wagmi';
-// Import the Marketplace ABI(Interface)
-import MarketplaceInstance from "../../abi/Marketplace.json";
+// Import the Shop ABI(Interface)
 import ShopInstance from "../../abi/Shop.json";
 // Import BigNumber from ethers to handle big numbers used in Celo
 import {BigNumber} from "ethers";
@@ -23,9 +22,9 @@ export const useContractSend = (functionName: string, args: Array<any>) => {
 
     // Prepare the write to the smart contract
     const { config } = usePrepareContractWrite({
-        // The address of the smart contract, in this case the Marketplace from the JSON file
+        // The address of the smart contract, in this case the Shop from the JSON file
         address: ShopInstance.address as `0x${string}`,
-        // The ABI of the smart contract, in this case the Marketplace from the JSON file
+        // The ABI of the smart contract, in this case the Shop from the JSON file
         abi: ShopInstance.abi,
         // The smart contract function name to call
         functionName,
