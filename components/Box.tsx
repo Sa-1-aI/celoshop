@@ -16,7 +16,6 @@ import { toast } from "react-toastify";
 
 
 function Box({ product, purchase, orders, setOrders }: any) {
-  // 0x3087b156C3A64dF13618E7086D9e28CBB701F9FF
   const [data, setData] = useState("inActive"); // Active or deactive Box Component.
   const [buy, setBuy] = useState(product.sold); // buy variable show the number of products that users want to buy at the moment
 

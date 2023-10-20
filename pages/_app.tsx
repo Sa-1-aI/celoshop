@@ -7,8 +7,7 @@ import "../styles/globals.css";
 import "../styles/style.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import type { AppProps } from "next/app";
-
-// Import the connectorsForWallets function to create a list of wallets to connect to. 
+ 
 // Import the RainbowKitProvider component to wrap the app with.
 import {
   connectorsForWallets,
