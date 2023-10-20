@@ -3,10 +3,6 @@
 import Box from "./Box";
 // Importing the dependencies
 import { useCallback, useEffect, useState } from "react";
-
-import Link from "next/link";
-// Import ethers to format the price of the product correctly
-import { ethers } from "ethers";
 // Import the useConnectModal hook to trigger the wallet connect modal
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 // Import the useAccount hook to get the user's address
@@ -123,10 +119,6 @@ const Product = ({ id, setError, setLoading, clear }: any) => {
   // If the product cannot be loaded, return null
   if (!product) return null;
 
-  // Format the price of the product from wei to cUSD otherwise the price will be way too high
-  // const productPriceFromWei = ethers.utils.formatEther(
-  //   product.price.toString()
-  // );
 
   // Return the JSX for the product component
   return (

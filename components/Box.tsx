@@ -1,67 +1,80 @@
 import React from "react";
+// Import ethers to format the price of the product correctly
 import { ethers } from "ethers";
 import { useState } from "react";
+// Import our custom identicon template to display the owner of the product
 import { identiconTemplate } from "@/helpers/index";
+// Import icons for increase and decrease orders and close box component
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleUp,
-  faAngleDown,
-  faWindowClose,
+  faAngleDown
 } from "@fortawesome/free-solid-svg-icons";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+// Import the toast library to display notifications
+import { toast } from "react-toastify";
 
 
 function Box({ product, purchase, orders, setOrders }: any) {
+  // 0x3087b156C3A64dF13618E7086D9e28CBB701F9FF
+  const [data, setData] = useState("inActive"); // Active or deactive Box Component.
+  const [buy, setBuy] = useState(product.sold); // buy variable show the number of products that users want to buy at the moment
 
-  const [data, setData] = useState("inActive");
-
-  const [remain, setRemain] = useState(product.sold);
-
-  // products not available
+  // // Check if the product is not available, and if so, set the 'orders' to 0.
   if (product.available === 0) {
     setOrders(0);
   }
 
+  // Increase the number of orders and products that user want to buy
   function incrementCounter() {
-    // value = orders , max = inputMax , min = 1
     if (orders === product.available) {
-      console.log("Full");
+      toast.error("You can't do this action", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
     } else {
       setOrders(orders + 1);
-      setRemain(remain + 1);
+      setBuy(buy + 1);
     }
   }
 
+  // Decrease the number of orders and products that user want to buy
   function decrementCounter() {
-    // value = orders , max = inputMax , min = 1
     if (orders === 1 || product.available === 0) {
-      console.log("You cant decrease more than this");
+      toast.error("You can't do this action", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
     } else {
       setOrders(orders - 1);
-      setRemain(remain - 1);
+      setBuy(buy - 1);
     }
   }
 
+  // Close the box with icon and reset 'orders','buy' and 'data' variables
   function close() {
     setData("inActive");
     setOrders(1);
-    setRemain(product.sold);
+    setBuy(product.sold);
   }
 
+  // Define a function to handle the purchase action. 
   function handlePurchase() {
     purchase();
   }
 
+  // Active 'data' variable for displaying box component
   function handleBoxOn() {
-    setData("blur");
+    setData("active");
   }
 
+  // Format the product price from Wei to a readable format.
   const productPriceFromWei = ethers.utils.formatEther(
     product.price.toString()
   );
 
+  // Convert the product price to a floating-point number.
   const productPriceToInt = parseFloat(productPriceFromWei);
-
+  
+  // Return the JSX for the box component
   return (
     <div>
       <div className="flex items-center space-x-2 mt-3 purchaseButton">
@@ -69,8 +82,6 @@ function Box({ product, purchase, orders, setOrders }: any) {
           type="button"
           className="text-sm uppercase font-raleway opacity-75"
           onClick={() => handleBoxOn()}
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModalCenter"
         >
           Buy Now for
         </button>
@@ -125,8 +136,8 @@ function Box({ product, purchase, orders, setOrders }: any) {
                 From This
               </p>
               <div className="available">
-                <span className="sold">{product.available===0 ? remain : orders}</span> /{" "}
-                <span className="total">{product.available}</span>
+                <span className="sold">{product.available===0 ? buy : buy + 1}</span> /{" "}
+                <span className="total">{product.supply}</span>
               </div>
             </div>
             <button onClick={() => handlePurchase()} className="buy">
