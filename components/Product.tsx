@@ -104,6 +104,7 @@ const Product = ({ id, setError, setLoading, clear }: any) => {
         success: "Product purchased successfully",
         error: "Failed to purchase product",
       });
+      window.location.reload()
       // If there is an error, display the error message
     } catch (e: any) {
       console.log({ e });
@@ -111,7 +112,6 @@ const Product = ({ id, setError, setLoading, clear }: any) => {
       // Once the purchase is complete, clear the loading state
     } finally {
       setLoading(null);
-      window.location.reload()
     }
   };
 
