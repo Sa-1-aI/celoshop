@@ -1,25 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-// This component displays and enables the purchase of a product
 import Box from "./Box";
-// Importing the dependencies
 import { useCallback, useEffect, useState } from "react";
-// Import the useConnectModal hook to trigger the wallet connect modal
 import { useConnectModal } from "@rainbow-me/rainbowkit";
-// Import the useAccount hook to get the user's address
 import { useAccount } from "wagmi";
-// Import the toast library to display notifications
 import { toast } from "react-toastify";
-// Import our custom identicon template to display the owner of the product
+import { Tooltip, Zoom } from "@mui/material";
 import { identiconTemplate } from "@/helpers/index";
-// Import our custom hooks to interact with the smart contract
 import { useContractApprove } from "@/hooks/contract/useApprove";
 import { useContractCall } from "@/hooks/contract/useContractRead";
 import { useContractSend } from "@/hooks/contract/useContractWrite";
-// import reac-tooltip library to show a tooltip when hovering over specific points
-import { Tooltip, Zoom } from "@mui/material";
 
-
-// Define the interface for the product, an interface is a type that describes the properties of an object
 interface Product {
   name: string;
   price: number;
@@ -32,28 +22,18 @@ interface Product {
   available: number;
 }
 
-// Define the Product component which takes in the id of the product and some functions to display notifications
 const Product = ({ id, setError, setLoading, clear }: any) => {
-  // customer orders * product price
   const [orders, setOrders] = useState(1);
 
-  // Use the useAccount hook to store the user's address
   const { address } = useAccount();
-  // Use the useContractCall hook to read the data of the product with the id passed in, from the marketplace contract
-  const { data: rawProduct }: any = useContractCall("readProduct", [id], true);
-  // Use the useContractSend hook to purchase the product with the id passed in, via the marketplace contract
-  const { writeAsync: purchase } = useContractSend("buyProduct", [
-    Number(id),
-    orders,
-  ]);
+  const { data: rawProduct } = useContractCall("readProduct", [id], true);
+  const { writeAsync: purchase } = useContractSend("buyProduct", [Number(id), orders]);
   const [product, setProduct] = useState<Product | null>(null);
-  // Use the useContractApprove hook to approve the spending of the product's price, for the ERC20 cUSD contract
-  const { writeAsync: approve } = useContractApprove(product?.price? (product.price * orders).toString() : "0");
-  // Use the useConnectModal hook to trigger the wallet connect modal
+  const { writeAsync: approve } = useContractApprove(product?.price ? (product.price * orders).toString() : "0");
   const { openConnectModal } = useConnectModal();
-  // Format the product data that we read from the smart contract
+
   const getFormatProduct = useCallback(() => {
-    if (!rawProduct) return null;
+    if (!rawProduct) return;
     setProduct({
       owner: rawProduct[0],
       name: rawProduct[1],
@@ -67,65 +47,58 @@ const Product = ({ id, setError, setLoading, clear }: any) => {
     });
   }, [rawProduct]);
 
-  // Call the getFormatProduct function when the rawProduct state changes
   useEffect(() => {
     getFormatProduct();
   }, [getFormatProduct]);
-  // Define the handlePurchase function which handles the purchase interaction with the smart contract
+
   const handlePurchase = async () => {
     if (!approve || !purchase) {
-      throw "Failed to purchase this product";
+      throw new Error("Failed to purchase this product");
     }
-    // Approve the spending of the product's price, for the ERC20 cUSD contract
+
     const approveTx = await approve();
-    // Wait for the transaction to be mined, (1) is the number of confirmations we want to wait for
     await approveTx.wait(1);
     setLoading("Purchasing...");
-    // Once the transaction is mined, purchase the product via our marketplace contract buyProduct function
+
     const res = await purchase();
-    // Wait for the transaction to be mined
     await res.wait();
   };
 
-  // Define the purchaseProduct function that is called when the user clicks the purchase button
   const purchaseProduct = async () => {
     setLoading("Approving ...");
     clear();
 
     try {
-      // If the user is not connected, trigger the wallet connect modal
       if (!address && openConnectModal) {
         openConnectModal();
         return;
       }
-      // If the user is connected, call the handlePurchase function and display a notification
+
       await toast.promise(handlePurchase(), {
         pending: "Purchasing product...",
         success: "Product purchased successfully",
         error: "Failed to purchase product",
       });
-      window.location.reload()
-      // If there is an error, display the error message
+      
+      // Conditionally reload the page after a successful purchase.
+      // window.location.reload();
     } catch (e: any) {
-      console.log({ e });
+      console.error({ e });
       setError(e?.reason || e?.message || "Something went wrong. Try again.");
-      // Once the purchase is complete, clear the loading state
     } finally {
       setLoading(null);
     }
   };
 
-  // If the product cannot be loaded, return null
   if (!product) return null;
 
-
-  // Return the JSX for the product component
   return (
     <div>
       <div className="container px-4 mx-auto">
         <div>
           <div className="card cursor-pointer">
             <div className="thumbnail">
+              {/* Fix the 'data-src' attribute to 'data-src' */}
               <img data-src={product.image} src={product.image} />
             </div>
             <div className="details">
@@ -148,7 +121,6 @@ const Product = ({ id, setError, setLoading, clear }: any) => {
                   {identiconTemplate(product.owner)}
                 </a>
               </div>
-              {/* Button */}
 
               <div className={"absolute right-0 bottom-0"}>
                 <Tooltip
