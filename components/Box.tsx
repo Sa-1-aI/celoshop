@@ -19,7 +19,7 @@ function Box({ product, purchase, orders, setOrders }: any) {
   const [data, setData] = useState("inActive"); // Active or deactive Box Component.
   const [buy, setBuy] = useState(product.sold); // buy variable show the number of products that users want to buy at the moment
 
-  // // Check if the product is not available, and if so, set the 'orders' to 0.
+  // Check if the product is not available, and if so, set the 'orders' to 0.
   if (product.available === 0) {
     setOrders(0);
   }
@@ -57,7 +57,12 @@ function Box({ product, purchase, orders, setOrders }: any) {
 
   // Define a function to handle the purchase action. 
   function handlePurchase() {
-    purchase();
+    if(product.available!==0)
+      purchase();
+    else 
+      toast.error("This product is not available now", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
   }
 
   // Active 'data' variable for displaying box component
